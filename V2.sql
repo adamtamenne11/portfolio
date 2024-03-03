@@ -42,7 +42,6 @@ where continent is not null
 group by date
 order by 1,2;
 
-
 -- population vs. vaccinations
 select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(vac.new_vaccinations) 
 over (partition by dea.location order by dea.location, dea.date) as RollingPeopleVac
@@ -53,9 +52,7 @@ join covid.covidvaccinations vac
 where dea.continent is not null
 order by 3,4;
 
-
 -- use CTE
-
 with PopvsVac (continent, location, date, population, new_vaccinations, RollingPeopleVac)
 as
 (
